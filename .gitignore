@@ -1,0 +1,41 @@
+# Keil build and listing directories
+/MDK-ARM/ChassisMotion/
+/MDK-ARM/Objects/
+/MDK-ARM/Listings/
+
+# Local firmware and host-test outputs; keep Build/build_firmware.py
+/Build/arm/
+/Build/tests/
+
+# Compiler, assembler and linker outputs (including root-level listings)
+*.o
+*.obj
+*.d
+*.dep
+*.crf
+*.lnp
+*.lst
+*.map
+*.axf
+*.elf
+*.hex
+*.build_log.htm
+
+# Per-user uVision window/workspace state
+*.uvguix
+*.uvguix.*
+*.uvgui
+*.uvgui.*
+
+# Local J-Link session settings and logs
+JLinkLog*.txt
+JLinkSettings.ini
+/MDK-ARM/EventRecorderStub.scvd
+
+# Editor backups and temporary files
+*.bak
+*.tmp
+*~
+
+# Keep .ioc, .mxproject, .uvprojx, .uvoptx, .sct, startup .s,
+# RTE/DebugConfig files, source code, third-party licenses and build/test scripts.
