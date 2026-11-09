@@ -13,6 +13,9 @@ typedef struct {
 int servo_init(const settings_t *settings);
 int servo_move(uint8_t id, uint16_t target_us, uint16_t move_ms, uint16_t delay_ms, uint32_t now);
 int servo_set_us(uint8_t id, uint16_t pulse_us);
+/* Absolute position: 0%=0 degrees/500us, 100%=180 degrees/2500us. */
+uint16_t servo_percent_to_us(uint8_t percent);
+int servo_set_percent(uint8_t id, uint8_t percent);
 uint16_t servo_current_us(uint8_t id);
 void servo_poll(uint32_t now);
 int servo_busy(void);

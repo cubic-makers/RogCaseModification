@@ -2,15 +2,14 @@
 #define APP_CONFIG_H
 
 /* Compile-time configuration; all application storage is static. */
-#define APP_LED_COUNT             64U
+#define APP_LED_COUNT             118U
+#define APP_LIGHT_GROUP_COUNT     25U
 #define APP_SERVO_COUNT           8U
-#define APP_SERVO_ACTIVE_MASK     0xFFU /* Enable all eight PWM channels for travel testing. */
+#define APP_SERVO_ACTION_COUNT    6U
+#define APP_SERVO_ACTIVE_MASK     0x3FU /* Six fitted servos; channels 7/8 remain reserved. */
+#define APP_MOTION_MAX_MS         600000UL /* Maximum shared timeline: ten minutes. */
 #define APP_SERVO_MIN_US          500U
 #define APP_SERVO_MAX_US          2500U
-/* All-eight travel test: override runtime targets without changing existing flash settings. */
-#define APP_SERVO_TEST_ENABLE     1
-#define APP_SERVO_TEST_CLOSE_US   2500U
-#define APP_SERVO_TEST_OPEN_US    500U
 #define APP_LOG_ENABLE_RTT        1
 #define APP_LOG_ENABLE_UART       1
 #define APP_LOG_LINE_BYTES        160U
@@ -18,7 +17,7 @@
 #define APP_LOG_MIN_LEVEL         0 /* 0 Debug, 1 Info, 2 Warn, 3 Error, 4 Off */
 #define APP_LOG_DEFAULT_SINK       1 /* 0 Off, 1 RTT, 2 USART2, 3 Both */
 #define APP_BUTTON_DEBOUNCE_MS     10U
-#define APP_BUTTON_POWER_MS        1000U
+#define APP_BUTTON_POWER_MS        200U
 #define APP_BUTTON_COLOR_MS        3000U
 #define APP_COLOR_CYCLE_MS         5000U
 #define APP_LIGHT_FRAME_MS         20U
@@ -34,6 +33,15 @@
 
 #if APP_LED_COUNT < 1 || APP_LED_COUNT > 1024
 #error "APP_LED_COUNT must be in 1..1024"
+#endif
+#if APP_LIGHT_GROUP_COUNT < 1 || APP_LIGHT_GROUP_COUNT > 32
+#error "APP_LIGHT_GROUP_COUNT must be in 1..32"
+#endif
+#if APP_SERVO_ACTION_COUNT < 1 || APP_SERVO_ACTION_COUNT > APP_SERVO_COUNT
+#error "Servo action count exceeds the available PWM channels"
+#endif
+#if APP_MOTION_MAX_MS > 600000UL
+#error "Timeline duration exceeds the 32-bit interpolation arithmetic budget"
 #endif
 #if APP_WS2812_HALF_SLOTS != 48
 #error "This driver uses 48 slots (two pixels) per DMA half"

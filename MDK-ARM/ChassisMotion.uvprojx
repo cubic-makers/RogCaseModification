@@ -554,6 +554,21 @@
               <FileType>1</FileType>
               <FilePath>../Core/Src/light.c</FilePath>
             </File>
+            <File>
+              <FileName>light_sequences.c</FileName>
+              <FileType>1</FileType>
+              <FilePath>../Core/Src/light_sequences.c</FilePath>
+            </File>
+            <File>
+              <FileName>motion_profile.c</FileName>
+              <FileType>1</FileType>
+              <FilePath>../Core/Src/motion_profile.c</FilePath>
+            </File>
+            <File>
+              <FileName>motion.c</FileName>
+              <FileType>1</FileType>
+              <FilePath>../Core/Src/motion.c</FilePath>
+            </File>
           </Files>
         </Group>
         <Group>

@@ -45,6 +45,10 @@ int servo_set_us(uint8_t id, uint16_t us) {
     if (!enabled(id) || !pulse_ok(us) || sequence) return 0;
     channels[id].moving = 0; write_us(id, us); return 1;
 }
+uint16_t servo_percent_to_us(uint8_t percent) {
+    return percent <= 100U ? (uint16_t)(APP_SERVO_MIN_US + (APP_SERVO_MAX_US - APP_SERVO_MIN_US) * percent / 100U) : 0;
+}
+int servo_set_percent(uint8_t id, uint8_t percent) { return percent <= 100U && servo_set_us(id, servo_percent_to_us(percent)); }
 uint16_t servo_current_us(uint8_t id) { return id < APP_SERVO_COUNT ? channels[id].current : 0; }
 static int moving(void) {
     uint8_t i; for (i = 0; i < APP_SERVO_COUNT; ++i) if (enabled(i) && channels[i].moving) return 1; return 0;
